@@ -8304,12 +8304,805 @@ import accountBook from "@/api/accountBook/accountBook";
     specialSubject: {
       
     }
+feat: 修改银行科目匹配关系table样式	1a16f91	xtl <zhongxingtianlun@163.com>	2023年5月10日 14:33
+
+
+```
+
+console.log({name: list.getAttribute('voice_encode_fileid')}), url: list.getAttribute('voice_encode_fileid') }
+
+```js
+// 添加全部的下拉选项
+src/views/oldCustomer/finishedCustomer/index.vue
+<el-option label="未标记" :value="0" />
+            <el-option label="无意向" :value="1" />
+            <el-option label="低意向" :value="2" />
+            <el-option label="高意向" :value="3" />
+```
+
+```js
+<div>
+                <span v-for="(item,index) in addForm.selectProduct" :key="index">{{ ' ' +  item.vcServiceName + '、' }}</span>
+              </div>
+```
+
+
+
+```js
+<el-select
+                v-model="addForm.selectProduct"
+                filterable
+                placeholder="请选择"
+                multiple
+                style="width:100%"
+                value-key="numProductId"
+                @change="selectProductHandle">
+                <el-option
+                  v-for="(item,index) in optionsProduct"
+                  :key="item.numProductId + index"
+                  :label="item.vcServiceName"
+                  :value="item" >
+                  <div>
+                    自定义服务类型:
+                    <el-tooltip class="item" effect="dark" :content="item.vcServiceName" placement="top" style="width: 100px;display: inline-block;">
+                      <div style="width: 100px;height: 23px; font-weight: bold; text-overflow: ellipsis; white-space: nowrap; overflow: hidden;">
+                        {{ item.vcServiceName }}
+                      </div>
+                    </el-tooltip>
+                    <span style="display: inline-block;width: 5px;"></span>
+                    ID : {{ item.numProductId }}
+                    <span style="display: inline-block;width: 5px;"></span>
+                    城市/区域 :
+                    <el-tooltip class="item" effect="dark" :content="item.vcAreaNames" placement="top" style="width: 100px;display: inline-block;">
+                      <div style="width: 100px;height: 23px; text-overflow: ellipsis; white-space: nowrap; overflow: hidden;">
+                        {{ item.vcAreaNames }}
+                      </div>
+                    </el-tooltip>
+                    <span style="display: inline-block;width: 5px;"></span>
+                    纳税类型 :
+                    <el-tooltip class="item" effect="dark" :content="item.vcTaxNames" placement="top" style="width: 100px;display: inline-block;">
+                      <div style="width: 100px;height: 23px; text-overflow: ellipsis; white-space: nowrap; overflow: hidden;">
+                        {{ item.vcTaxNames }}
+                      </div>
+                    </el-tooltip>
+                    <span style="display: inline-block;width: 5px;"></span>
+                    价格 : {{ item.numPrice }}
+                  </div>
+                </el-option>
+              </el-select>
+
+
+```
+
+```js
+clearInterval(this.timer);
+console.log(num);
+setTimeout(function() {
+  
+}, 500)
+
+
+北京繁一企业管理咨询有限公司更换成北京繁一科技有限公司	1bc2de6	quanll <1139186509@qq.com>	2023年5月15日 13:40
+
+
+// 科目
+      VoucherInputAjax.QuerySubject().then(response => {
+      accountBook.SubjectList().then(response => {;
+
+// 合同特殊处理 新版劳务建筑资质
+response.data[0].contractContent.certificationTypeName = 17;   response.data[0].contractContent.certificationTypeNameDisplay = true;
+&& !orderDataMain.contractContent.certificationTypeNameDisplay；
+;
+addPeriod: "201904"
+bankName: ""
+imagePath: I'https://account-dev.oss-cn-beijing.
+invoiceType: "1001" isPurchase: "9" manyConditions:
+```
+
+```js
+addPeriod: "201904"
+bankName: ""
+imagePath: 'https://account-dev.oss-cn-beijing.
+invoiceType: "1001"
+isPurchase: "9"
+manyConditions: 0
+
+// 银行
+bankName： "浦发银行"
+imagePath:t"https://account-d=v
+period: 201904
+```
+
+```js
+src/views/Invoice/IncomeAndOutput/BillCollection/billCarousel.vue
+:58
+          <div v-if=" this.data.source == 'ticketErr' ? true : false ">{{this.data.message}}</div>
+src/views/Ticket/ticketCenter/childFile/ticketTroubleTable.vue
+:108
+        message: "失败原因：" + row.message,
+src/views/Ticket/ticketCenter/index.vue
+index.vue
+
+// 权限设置
+v-hasPermi="['erp:aaaQualifies:edit']"
+
+getTodoById('billCenter/scanning'))
+    ...mapGetters(["getTodoById", "getOrder"])
+import { mapGetters, mapMutations, mapState } from "vuex";
 
 ```
 
 
 
+### 启照多2
 
+```js
+licenseReceiveTransfer 执照收转
+management 执照收转管理  Management
+erp/licenseReceiveTransfer/Management.vue
+audit 执照收转审核  Audit
+erp/licenseReceiveTransfer/Audit.vue
+accountingServiceList 会计服务列表
+erp/licenseReceiveTransfer/AccountingServiceList.vue
+
+// 格式化日期
+{{ parseTime(scope.row.createdTime, '{y}-{m}-{d}') }}
+
+```
+
+```js
+// 接口
+http://localhost:9401/erpLicenseAccount/operateErpLicenseFollowAccount?licenseId=1009&userId=1883
+分配会计接口   licenseId执照Id   userId会计Id
+
+http://localhost:9401/erpLicenseAccount/handoverErpLicense?licenseId=1009
+确认交接   licenseId执照Id
+
+http://localhost:9401/erpLicenseAccount/operateErpLicenseAccount?licenseId=1009&date=2022-02-18&type=3
+type 1报税2汇算清缴3工商年检     licenseId执照Id
+
+http://localhost:9401/erpLicenseAccount/list?pageSize=10&pageNum=1&number=20230122&companyName=二十四&licenseTax=1&handoverStatus=2&status=2&licenseSource=1&accountUser=3533
+
+http://localhost:9401/erpLicenseAccount/getErpLicenseBS?licenseId=1009
+```
+
+
+
+
+
+
+
+```js
+import jizhangtwo from './jizhangtwo.vue';
+    jizhangtwo,
+
+
+<div v-if="onlineContracts == 2">
+                    <jizhangtwo/>
+                  </div>
+                  <div v-if="onlineContracts == 1">
+                    <jizhangtwo/>
+                  </div>
+                  <div v-if="onlineContracts == 3">
+                    <jizhang />
+                  </div>
+                  <div v-if="onlineContracts == 4">
+                    <jizhang />
+                  </div>
+```
+
+
+
+{name: '待提交', id: 0},
+{name: '主管待审核', id: 1},
+{name: '主管驳回', id: 2},
+{name: '待审核', id: 3},
+
+{name: '审核通过', id: 5},
+
+{name: '审核未通过', id: 4},
+
+
+```js
+src/views/AccountSet/Voucher.vue
+:459
+console.log(`accountSet = ${this.accountSet},type = ${this.type},view = ${this.view},voucherType = ${this.voucherType},`);
+
+faet: 修复科目余额表点击隐藏本年累计侧边栏时间轴不能点击	84bf263	xtl <zhongxingtianlun@163.com>	2023年5月24日 16:25
+feat: 凭证录入日期限制选择范围	5a8729d	xtl <zhongxingtianlun@163.com>	2023年5月24日 17:49
+
+```
+
+
+
+```js
+npm run fix-memory-limit
+```
+
+src/views/EnterpriseCenter/KeepAccount/VoucherQuery/VoucherQuery.vue
+
+src/views/AccountSet/Voucher.vue
+
+```js
+<span v-if="onlineContracts == 4">上海</span><span v-else>北京</span>
+```
+
+​              key="detailAccountDateSelection
+
+```js
+<p class="partTips block">
+            依据《中华人民共和国民法典》及相关法律法规的规定，甲方因经营管理需要，委托乙方管理其税控机，为了维护当事人的合法权益，双方本着诚信，平等，互利的原则，经双方代表协商达成如下协议：
+          </p>
+          <p class="partTips font-28">
+            一：委托内容
+          </p>
+          <p>甲方委托乙方代为对自己所有的税控机及其配件进行管理</p>
+          <p class="partTips font-28">
+            二、委托费用、时间及范围：
+          </p>
+```
+
+```js
+            this.$refs.voucher.setNumber(response.data.number);
+
+```
+
+```js
+<p v-if="onlineContracts == 2" class="name">
+                地  址：北京市朝阳区北辰东路8号院北京国际会议中心东配楼三楼</p>
+              <p v-if="onlineContracts == 1" class="name">
+                地  址：北京市朝阳区北辰东路8号院北京国际会议中心东配楼三楼</p>
+              <!-- <p class='name'
+                v-if="onlineContracts == 1 && dzCityId == '8'">
+                乙方：河南助苗企业管理咨询有限公司</p> -->
+              <p v-if="onlineContracts == 3" class="name">
+                地  址：北京市朝阳区北辰东路8号汇宾大厦A座1308室</p>
+              <p v-if="onlineContracts == 4" class="name">
+                地  址：上海市嘉定区云谷路499号中信泰富广场T3办公楼1105室</p>
+```
+
+
+
+```js
+<div v-if="onlineContracts == 2">
+                <p>公司名称：北京繁一科技有限公司</p>
+                <!-- <p>开户行：工商银行北京羊坊店支行</p> -->
+                <p>开户行：工商银行玉渊潭支行</p>
+                <p>帐号：0200282209200020012</p>
+                <p>税号：91110116MA01YD80XW</p>
+                <p>地址：北京市怀柔区乐园西大街13号院28号楼1层28-3</p>
+              </div>
+              <div v-if="onlineContracts == 1">
+                <p>公司名称：北京小苗财税服务有限公司</p>
+                <p>开户行：中国建设银行北京北环支行</p>
+                <p>帐号：11050162540000000320</p>
+                <p>税号：91110108MA0071NP98</p>
+                <p>地址：北京市海淀区远大西路29号5层5191室</p>
+              </div>
+              <div v-if="onlineContracts == 3">
+                <p>公司名称：北京后企之秀企业管理咨询有限公司</p>
+                <p>开户行：招商银行股份有限公司北京海淀黄庄支行</p>
+                <p>帐号：110941339410601</p>
+                <p>税号：91110105MA01Q69G4N</p>
+                <p>地址：北京市朝阳区北辰东路8号3号楼3层303A室</p>
+              </div>
+              <div v-if="onlineContracts == 4">
+                <p>公司名称：上海企苗企业管理咨询有限公司</p>
+                <p>开户行：招商银行股份有限公司上海嘉定支行</p>
+                <p>账号：121927216110701</p>
+								<p>税号：91310114MA1GU8JXXM</p>
+                <p>地址：上海市嘉定区汇源路55号8幢5层514室</p>
+              </div>
+```
+
+
+
+```js
+纯地址注册、变更
+股权变更协议
+劳务建筑资质+安许
+劳务建筑资质           
+建筑资质安许
+建筑资质
+注销代理
+科技类资质服务
+咨询服务
+税控托管
+股权转让
+
+* 记账+注册 3309
+* 资质+记账 3526
+* 变更+记账 3261  ✅
+记账+注册 3309
+资质+记账 3526
+变更+记账 3261
+纯地址注册、变更 4699
+股权变更协议  3290-3295
+资质+记账（已完成） 3458
+劳务建筑资质+安许     新合同 5786
+劳务建筑资质     5128
+建筑资质安许     5027
+建筑资质       4767
+注销代理    3447
+科技类资质服务 5735  5611
+咨询服务   5724
+检测报告服务  5731  软件登记测试
+税控托管 344
+股权转让  -- 委托收购股权  4956  ✅
+检测报告服务合同  5731
+产品名称新增
+
+
+```
+
+```js
+// xtl_hetong3 修改科技类合同
+xtl_hetong4 添加检测报告合同
+xtl_hetongdizhi 统一修改地址
+xtl_hetongjizhang 修改上海合同
+xtl_hetongzhuti 添加主体 酬善 上海北分
+
+北京个体  25  5875 酬善
+湖南个体  26  5686 酬善  5296 上海北分
+知识产权试点服务  27
+新技术新产品服务  28
+中小企业入库  29
+this.orderDataZhishichanquan = data25[0];
+this.orderDataXinjishu = data26[0];
+this.orderDataZhongxiaoqiye = data27[0];
+
+```
+
+import  Print from '@/utils/print.js'
+
+Vue.use(Print)
+
+
+
+import { printExport } from '@/api/axios.config'
+
+​      printExport('/profit/export', 'print-pdf', '', this.querySchemer)
+
+```js
+previewInvoice(url) {
+      this.billCarouselShow = true;
+      this.invoiceDetailData = {
+        modalTitle: "票据预览", // 标题
+        url: url,
+        message: "",
+        source: "ticketErr",
+        modalPageType: "salesTicket" // 页面类型
+      };
+    },
+      
+      closePreviewModel() {
+      this.billCarouselShow = false;
+    },
+    showPreviewManager() {
+      this.billCarouselShow = false;
+    },
+      
+      import BillCarousel from "@/views/Invoice/IncomeAndOutput/BillCollection/billCarousel.vue";
+
+      <bill-carousel
+      v-if="billCarouselShow"
+      :data="invoiceDetailData"
+      @close-model="closePreviewModel"
+      @show-manager="showPreviewManager"
+    />
+```
+
+
+
+
+
+
+
+```js
+licenseManangerExamine.js   api
+
+我发起的审批
+待我审批
+审批通过列表
+审批人管理
+抄送列表
+打印列表
+
+菜单类型: 目录
+菜单名称: 审核
+页面名称: examine
+
+菜单类型: 菜单
+页面名称: initExamine
+菜单名称: 我发起的审批
+组件路径: licenseMananger/examine/initExamine.vue
+
+waitExamine 待我审批
+licenseMananger/examine/waitExamine.vue
+examinePass 审批通过
+licenseMananger/examine/examinePass.vue
+examinePeopleManage 审批人管理
+licenseMananger/examine/examinePeopleManage.vue
+
+按钮
+审批人新增
+erp:examinePeopleManage:add
+
+copySend 抄送列表
+licenseMananger/examine/copySend.vue
+printList 打印列表
+licenseMananger/examine/printList.vue
+```
+
+```js
+id
+companyName
+examineStatus
+applicationListType
+licenseNumber
+licenseSourcePersion
+isPay
+cancelStatus
+supplementStatus
+
+
+
+otherId: "",
+companyName: "";
+approveStatus: "";
+approveType: "";
+licenseNumber: "";
+applyer: "";
+isPayment: "";
+revokeStatus: "";
+supplementStatus: "";
+
+getQzdApprovalServiceInfo
+getErpExamineFlow
+```
+
+
+
+```js
+ url: `${process.env.API_BASE_URL}/invoice/import-invoice-tax`,
+        importInvoiceTaxFileList
+
+
+/**账套id*/
+private Long accountSetId;
+
+/**所属组织*/
+private String accountingTeam;
+
+/**记账会计*/
+private String createUserName;
+
+/**记账状态*/
+private String bookkeepingStatus;
+
+/**凭证数*/
+private Integer voucherCount;
+
+/**申报状态*/
+private String declarationStatus;
+
+/**缴税状态*/
+private String taxPaymentStatus;
+
+总数-total
+未建账-accountNotEstablished
+未记账-unbookkept
+已结账-closed
+记账中-inBookkeeping
+//未结账 = 记账中 + 未记账
+map.put("unclear", 0);
+//已申报
+map.put("declared", 0);
+//未申报
+map.put("undeclared", 0);
+//无需申报
+map.put("noDeclarationRequired", 0);
+//部分申报
+map.put("partialDeclaration", 0);
+//已缴税
+map.put("paidTaxes", 0);
+//未缴税
+map.put("unpaidTaxes", 0);
+//无需缴税
+map.put("noTaxRequired", 0);
+
+//记账会计
+private String createUserName;
+
+//所属组织
+private String accountingTeam;
+
+//账套数-套数
+private Integer accountSetTotal;
+//账套数-一般人
+private Long accountSetOrdinaryPeople;
+//账套数-小规模
+private Long accountSetSmallScale;
+
+//已结账-套数
+private Integer closedTotal;
+//已结账-一般人
+private Long closedOrdinaryPeople;
+//已结账-小规模
+private Long closedSmallScale;
+
+//未结账-套数
+private Integer unclearTotal;
+//未结账-一般人
+private Long unclearOrdinaryPeople;
+//未结账-小规模
+private Long unclearSmallScale;
+
+//完成率
+private String completionRate;
+
+1-未建账
+2-未记账
+3-已结账
+4-记账中
+
+<span v-if="scope.row.accountId === 0 && !scope.row.assistId">{{scope.row.name}}</span>
+              <span v-else-if="scope.row.accountId === 0">（{{scope.row.assistName}}）小计：</span>
+              <span v-else>{{scope.row.assistName}}</span>
+ <!-- <span v-if="scope.row.accountId === 0 && !scope.row.assistId">{{scope.row.name}}</span>
+              <span v-else>{{scope.row.assistName}}小计：</span>
+              <span v-else>{{scope.row.fullName}}</span> -->
+```
+
+
+
+```js
+// 代账首页 四个饼图样式
+src/views/Home/Home.vue
+:1154
+.circle__charts {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(340px, calc(25% - 20px)));
+  grid-row-gap: 20px;
+  grid-column-gap: 20px;
+  justify-content: start;
+  grid-template-rows: 240px;
+  margin: 20px 20px 0 20px;
+  .circle__card {
+    background: #fff;
+    border-radius: 4px;
+    box-shadow: 0 3px 6px 2px rgba(0, 0, 0, 0.08);
+    padding: 18px;
+    min-width: 340px;
+
+    .circle__content {
+      // padding: 0 25px;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+    }
+// 版本2
+.circle__charts {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(340px, 1fr));
+  column-gap: 20px;
+  grid-template-rows: 240px;
+  margin: 20px 20px 0 20px;
+  overflow-x: scroll;
+  .circle__card {
+    background: #fff;
+    border-radius: 4px;
+    box-shadow: 0 3px 6px 2px rgba(0, 0, 0, 0.08);
+    padding: 18px;
+
+    .circle__content {
+      // padding: 0 25px;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+    }
+```
+
+
+
+```js
+问题一：// 凭证录入 科目向上可以跳转到最后一个
+src/components/Selector/mixins/typeAheadPointer.js
+:26
+}else {
+        this.typeAheadPointer = this.filteredOptions.length - 1;
+        this.maybeAdjustScroll(true)
+:43
+  else {
+        this.typeAheadPointer = 0
+				this.maybeAdjustScroll()
+问题二：// 凭证录入，第一条记录没有金额时，也支持回车换行
+src/views/AccountSet/Voucher.vue
+:1159
+            // 跳到摘要
+            // this.toDigest(index, isTab);
+  					this.toDigestOrNextLine(detail, index, isTab); // 添加这一行原因：会计现在需要改成不输入金额也能跳转到下一行
+:1194
+          index--; // 添加这一行原因：会计现在需要改成不输入金额也能跳转到上一行
+
+    
+src/mixin/event.js;
+delete
+console.log("1==");
+console.log("2==");
+```
+
+
+
+```js
+// 币种-修改选中币种后删除重置选中的数据
+this.multipleSelection.forEach(item => ids.push(item.code));
+          this.$refs.mainTable.clearSelection();
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+```js
+// 三大报表添加批导出
+
+        <el-button class="btn btn-main btn-import" @click="batchExportBtn">批导出</el-button>
+
+
+<el-dialog title="批量操作"
+      v-if="batchExportVisible"
+      :visible.sync="batchExportVisible"
+      width="530px">
+      <div style="padding: 0 0 0 50px;">
+        期间:
+        <el-date-picker
+        style="width: 380px;"
+        v-model="batchExportDate"
+        format="yyyy-MM"
+        value-format="yyyy-MM"
+        type="monthrange"
+        :picker-options="pickerOptions"
+        range-separator=" 至 "
+        start-placeholder="开始月份"
+        end-placeholder="结束月份">
+        </el-date-picker>
+        <p style="color: #b1b1b1;">说明：最大跨期为一年，按月导出已选期间的报表</p>
+      </div>
+      <span slot="footer" class="dialog-footer">
+        <el-button @click="batchExportClose">取 消</el-button>
+        <el-button class="btn btn-main btn-import" @click="batchExportHandler">确 定</el-button>
+      </span>
+    </el-dialog>
+
+batchExportVisible: false,
+      batchExportDate: null,
+      choiceDate0: '',
+      pickerOptions: {
+        // 设置不能选择的日期
+        onPick: ({ maxDate, minDate }) => {
+          this.choiceDate0 = minDate.getTime();
+          if (maxDate) {
+            this.choiceDate0 = '';
+          }
+        },
+        disabledDate:(time) => {
+          let choiceDateTime = new Date(this.choiceDate0).getTime();
+          const minTime = new Date(choiceDateTime).setMonth(new Date(choiceDateTime).getMonth() - 11);
+          const maxTime = new Date(choiceDateTime).setMonth(new Date(choiceDateTime).getMonth() + 11);
+          if (this.choiceDate0) {
+            return time.getTime() < minTime || time.getTime() > maxTime;
+          }
+          //若一个日期也没选中则可以选择所有日期
+          return false;
+        }
+      },
+
+batchExportBtn() {
+      this.batchExportVisible = true;
+      this.batchExportDate = null;
+    },
+    batchExportClose() {
+      this.batchExportVisible = false;
+      this.batchExportDate = null;
+    },
+    batchExportHandler() {
+      if(this.batchExportDate) {
+        console.log(this.batchExportDate);
+        // printExport('/profit/export', 'excel', '', this.querySchemer)
+      }else {
+        this.$message({
+          type: 'error',
+          message: '请选择期间',
+        })
+      }
+    },
+```
+
+
+
+```js
+<p>
+              联系地址：
+              <input v-if="source == 'add'" v-model="orderDataMain.contractContent.contractDetailObject.firstAddress" type="text" style="font-size: 20px;width: 600px;">
+              <u v-else>{{ orderDataMain.contractContent.contractDetailObject.firstAddress }}</u>
+            </p>
+          </div>
+          <div class="partB">
+            <p v-if="onlineContracts == 2" class="name">
+              乙方（受托方）：北京繁一企业管理咨询有限公司</p>
+            <p v-if="onlineContracts == 1" class="name">
+              乙方（受托方）：北京小苗财税服务有限公司</p>
+            <p v-if="onlineContracts == 3" class="name">
+              乙方（受托方）：北京后企之秀企业管理咨询有限公司</p>
+            <p v-if="onlineContracts == 4" class="name">
+              乙方（受托方）：上海企苗企业管理咨询有限公司</p>
+            <div>
+              <p>
+                代 表 人 姓 名：
+                <input v-if="source == 'add'" v-model="orderDataMain.contractContent.secondContactName" type="text" style="font-size: 20px;width: 600px;">
+                <u v-else>{{ orderDataMain.contractContent.secondContactName }}</u>
+              </p>
+              <!-- <p>联系电话：010-62667788</p> -->
+              <p>联系电话：{{ orderDataMain.contractContent.secondtContactPhone || '010-62667788'}}</p>
+              <p>
+                部  门：<input v-if="source == 'add'" v-model="orderDataMain.contractContent.contractDetailObject.secondDeptName" type="text" style="font-size: 20px;width: 600px;">
+                <u v-else>{{ orderDataMain.contractContent.contractDetailObject.secondDeptName }}</u>
+              </p>
+              <p v-if="onlineContracts == 2" class="name">
+                联  系  地  址：北京市朝阳区北辰东路8号院北京国际会议中心东配楼三楼</p>
+              <p v-if="onlineContracts == 1" class="name">
+                联  系  地  址：北京市朝阳区北辰东路8号院北京国际会议中心东配楼三楼</p>
+              <!-- <p class='name'
+                v-if="onlineContracts == 1 && dzCityId == '8'">
+                乙方：河南助苗企业管理咨询有限公司</p> -->
+              <p v-if="onlineContracts == 3" class="name">
+                联  系  地  址：北京市朝阳区北辰东路8号汇宾大厦A座1901室</p>
+              <p v-if="onlineContracts == 4" class="name">
+                联  系  地  址：嘉定区云谷路499号中信泰富广场T3办公楼1105室</p>
+            </div>
+          </div>
+          <p class="partTips block">
+            甲乙双方经友好协商，就甲方委托乙方代理甲方资质申办业务，根据《中华人民共和国民法典》以及其他法律、法规，自愿签订本合同，共同遵守合同内容，承担相应法律责任，合同内容如下：
+          </p>
+        </div>
+        <div class="contract-content">
+          <div class="contract-rule">
+            <div class="rules">
+              <div class="font-28">
+                <b>第一条	委托代理内容</b>
+                <div>
+                  <p>
+                    办理建筑业目标公司名称
+                    <input v-if="source == 'add'" v-model="orderDataMain.contractContent.contractDetailObject.companyName" type="text" style="font-size: 20px;width: 600px;">
+                    <u v-else>{{ orderDataMain.contractContent.contractDetailObject.companyName }}</u>
+                  </p>
+                  <p>
+                    办理建筑业资质类别名称
+                    <input v-if="source == 'add'" v-model="orderDataMain.contractContent.contractDetailObject.qualificationClassName" type="text" style="font-size: 20px;width: 600px;">
+                    <u v-else>{{ orderDataMain.contractContent.contractDetailObject.qualificationClassName }}</u>
+                  </p>
+```
+
+
+
+
+
+```js
+
+```
 
 
 
