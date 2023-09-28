@@ -8094,7 +8094,7 @@ getArea({parentId: this.form.cityId}).then((res) => {
 委托股权转让合同（买执照）销售用 newshougou
 ```
 
-  
+
 
 ```js
 // 会计绩效跳转记账客户列表 请求传参删除分页
@@ -8598,6 +8598,7 @@ src/views/AccountSet/Voucher.vue
 
 
 ```js
+合同合同
 纯地址注册、变更
 股权变更协议
 劳务建筑资质+安许
@@ -8609,9 +8610,10 @@ src/views/AccountSet/Voucher.vue
 咨询服务
 税控托管
 股权转让
-
-* 记账+注册 3309
-* 资质+记账 3526
+记账续费 4
+工商变更+记账  2
+* 记账+注册 3309  1
+* 资质+记账 3526  3
 * 变更+记账 3261  ✅
 记账+注册 3309
 资质+记账 3526
@@ -8630,7 +8632,10 @@ src/views/AccountSet/Voucher.vue
 税控托管 344
 股权转让  -- 委托收购股权  4956  ✅
 检测报告服务合同  5731
+
+中小企业入库服务合同  5740  5739
 产品名称新增
+feat: 添加中小企业入库服务合同	4aa1f9c	xtl <zhongxingtianlun@163.com>	2023年8月7日 15:32
 
 
 ```
@@ -8938,8 +8943,541 @@ console.log("2==");
 
 ```js
 // 币种-修改选中币种后删除重置选中的数据
+:205
 this.multipleSelection.forEach(item => ids.push(item.code));
           this.$refs.mainTable.clearSelection();
+```
+
+```js
+src/router/index.js
+
+src/views/EnterpriseCenter/EnterpriseCenter.vue
+
+src/views/EnterpriseCenter/currency
+
+
+src/store/modules/common.js
+// result.data.data[0].isQuantity = true;
+      result.data.data[0].isWb = true;
+      result.data.data[0].currency = "人民币";
+      result.data.data[0].unit = "个";
+      result.data.data[0].exchangeRate = 1.2121;
+      // console.log(111,result.data.data);
+src/views/AccountSet/Voucher.vue
+```
+
+
+
+```js
+right-toolbar
+:loading="loading"
+北斗下页面小搜索按钮添加 loading
+
+
+// 只能输入正数（小数和整数）
+  formatPositiveNumberInput(val, fixed = 2) {
+    val = val.replace(/[^0-9|.]/g, '');
+    let firstDot = val.indexOf('.');
+    let lastDot = val.lastIndexOf('.');
+    if(firstDot !== lastDot) {
+      val = val.slice(0, val.length - 1);
+      return val
+    }
+    let valArr = val.split('.');
+    if(valArr.length === 2 && valArr[1].length > fixed) {
+        return valArr[0] + '.' + valArr[1].slice(0, fixed)
+    }else{
+      return val
+    }
+  }
+```
+
+```js
+
+let ids = [];
+          this.multipleSelection.forEach(item => ids.push(item.currencyNumber));
+          currencyApi.currencyDelete(query).then(res => {
+            if(res.code === 200) {
+              this.$message({
+                type: 'success',
+                message: res.message,
+              });
+              this.getList();
+            }else {
+              this.$message({
+                type: 'error',
+                message: res.message,
+              });
+            }
+          })
+          this.$refs.mainTable.clearSelection();
+
+	// 全部外币币种
+  currencyListAll(params) {
+    let result = Post("/foreign-currency/listAll", params);
+    return result;
+  },
+    
+
+    exchangeRateInput(val, fixed = 6) {
+      val = AmountUtil.formatPositiveNumberInput(val, 6);
+      this.$set(this.info, 'exchangeRate', val);
+    },
+      
+      import AmountUtil from "@/utils/AmountUtil";
+
+      // 只能输入正数（小数和整数）
+  formatPositiveNumberInput(val, fixed = 2) {
+    if(fixed === 0) {
+      return val.replace(/[^0-9]/g, '');
+    }
+    val = val.replace(/[^0-9|.]/g, '');
+    let firstDot = val.indexOf('.');
+    let lastDot = val.lastIndexOf('.');
+    if(firstDot !== lastDot) {
+      val = val.slice(0, val.length - 1);
+      return val
+    }
+    let valArr = val.split('.');
+    if(valArr.length === 2 && valArr[1].length > fixed) {
+        return valArr[0] + '.' + valArr[1].slice(0, fixed)
+    }else{
+      return val
+    }
+  }
+  toThousandsNoComma (nums) { // 分隔千位符并保留小数点后两位, nums: 423234
+    let num = nums || 0
+    let left1 = ''
+    if (String(nums).indexOf('-') !== -1) {
+      num = String(nums).replace('-', '')
+      left1 = '-'
+    }
+    let left = Number(num).toFixed(2).toString().split('.')[0]
+    let right = Number(num).toFixed(2).toString().split('.')[1]
+    let result = ''
+    while (left.length > 3) {
+      result = '' + left.slice(-3) + result
+      left = left.slice(0, left.length - 3)
+    }
+    if (left) { result = left + result }
+    if (left1 !== '') { result = left1 + result }
+    return result + '.' + right
+  },
+
+
+
+<el-switch
+              style="margin-right:10px"
+              v-model="switchFlag"
+              active-color="#13ce66"
+              active-text="全部展开"
+              @change="toggleRowExpansion">
+            </el-switch>
+
+
+toggleRowExpansion() {
+      this.isExpansion = !this.isExpansion;
+      this.toggleRowExpansionAll(this.subjectBalanceList, this.isExpansion);
+    },
+    toggleRowExpansionAll(data, isExpansion) {
+      data.forEach((item) => {
+        this.$refs.mainTable.toggleRowExpansion(item, isExpansion);
+        if (item.balancesChildren) {
+            this.toggleRowExpansionAll(item.balancesChildren, isExpansion);
+        }
+      });
+    },
+      
+      price changePrice
+      currencyPrice  changeCurrencyPrice
+      exchangeRate  changeExchangeRate
+      cnyPrice  changeCnyPrice
+      
+      
+      AmountUtil
+      debitAmount
+      creditAmount
+      
+      changeNumber
+      changePrice
+      changeExchangeRate
+
+
+
+      if(!this.getVoucherNumberLoding) {
+        this.getVoucherNumberLoding = true;
+      }else {
+        return false;
+      }
+      
+      
+```
+
+
+
+```js
+let result = this.currencyList.find((item) => item.id === detail.account.currencyId);
+      if(result) {
+        this.quantityWbForm.exchangeRate = result.exchangeRate;
+      }else {
+        this.quantityWbForm.exchangeRate = "";
+      }
+```
+
+
+
+```js
+quantityWbFormNumber
+quantityWbFormPrice
+quantityWbFormCurrencyAmount  enterQuantityWbFormCurrencyAmount
+quantityWbFormExchangeRate  enterQuantityWbFormExchangeRate
+quantityWbFormCnyPrice  enterQuantityWbFormCnyPrice
+
+
+
+currencyFlag  numberFlagChange
+numberFlag  currencyFlagChange
+
+
+```
+
+```js
+// 科目表外币科目取消外币辅助后，外币科目仍然显示
+// src/views/EnterpriseCenter/Subject/subpage/addSubject.vue
+:351
+this.form.currencyId = this.dataProps.currencyId === 0 ? 0 : this.dataProps.currencyId;
+          this.form.currencyName = this.dataProps.currencyId === 0 ? '' : this.dataProps.currencyName;
+:569
+        this.form.currencyName = ""
+
+```
+
+
+
+refreshPageFlag
+
+subject
+
+earlyStage
+
+
+
+```js
+<template>
+  <div>
+    <div style="padding: 0 0 10px 30px;" v-for="(item, index) in selfTreeData" :key="index">
+      <div v-if="item.children && item.children.length">
+        {{ index + 1 + '.' }} 满足下列
+        <el-select style="width: 100px;" v-model="item.$flag" placeholder="请选择">
+          <el-option label="所有" :value="1" ></el-option>
+          <el-option label="任意" :value="2" ></el-option>
+        </el-select>
+        条件：
+        <el-button type="primary" @click="emitOperatorCommand(item, index)">
+          <span class="pr5">添加筛选条件</span>
+        </el-button>
+        <i class="el-icon-delete delete_btn" style="margin-left: 10px" @click="emitDel(index)"></i>
+        <div style="padding: 10px 0 10px 30px" v-for="(childItem, childIndex) in item.children" :key="index + '_' +  childIndex">
+          {{ childIndex + 1 + ')' }}
+          <el-cascader
+            v-model="childItem.$value"
+            :show-all-levels="false"
+            :options="typeOptions"
+            :props="{emitPath: false}"
+            @change="(val) => {typeHandleChange(val, childItem, childIndex, index)}"
+          >
+          </el-cascader>
+          <template v-if="item.$key === ''">
+          </template>
+          <i class="el-icon-delete delete_btn" style="margin-left: 10px" @click="emitDel(childIndex, index)"></i>
+        </div>
+      </div>
+      <div v-else style="padding: 0 0 10px 0">
+        {{ index + 1 + '.' }}
+        <el-cascader
+          v-model="item.$value"
+          :show-all-levels="false"
+          :options="typeOptions"
+          :props="{emitPath: false}"
+          @change="(val) => {typeHandleChange(val, item, index)}"
+        >
+        </el-cascader>
+        <template v-if="item.$key === ''">
+        </template>
+        <i class="el-icon-delete delete_btn" style="margin-left: 10px"  @click="emitDel(index)"></i>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+export default {
+  props: {
+    treeData: {
+      type: Array,
+      default: () => []
+    }
+  },
+  name: "searchTree",
+  data() {
+    return {
+      selfTreeData: [],
+      typeOptions: [
+        {
+          value: 'xiansuoxinxi',
+          label: '线索信息',
+          children: [
+            {
+              value: 'createdTime',
+              label: '创建时间',
+            },
+            {
+              value: 'guestSrcsIds',
+              label: '线索来源',
+            },
+            {
+              value: 'adClueSourceId',
+              label: '推广来源',
+            },
+            {
+              value: 'whereGet',
+              label: '录入方式',
+            },
+            {
+              value: 'numSinkId',
+              label: '下沉原因',
+            },
+            {
+              value: 'vcCompanyName',
+              label: '名称（公司）',
+            },
+            {
+              value: 'numIsCrm',
+              label: '是否加入过客保',
+            },
+            {
+              value: '1',
+              label: '进入公海次数',
+            },
+            {
+              value: '2',
+              label: '线索信息关键字',
+            },
+          ],
+        },
+        {
+          value: 'xiansuojiance',
+          label: '线索检测',
+          children: [
+            {
+              value: 'checkPhoneStatus',
+              label: '空号检测结果',
+            },
+            {
+              value: 'numForbidCheckResult',
+              label: '风险号检测结果',
+            },
+            {
+              value: 'aiConfigurationsId',
+              label: 'AI外呼任务',
+            },
+            {
+              value: 'aiTagIds',
+              label: 'AI外呼标签',
+            },
+            {
+              value: 'aiWish',
+              label: 'AI外呼意向度',
+            },
+            {
+              value: 'numStatus',
+              label: '线索所在节点',
+            },
+            {
+              value: 'numManAiWish',
+              label: '人工外呼意向度',
+            },
+            {
+              value: 'numQualityTesting',
+              label: '意向度检测',
+            },
+            {
+              value: 'datCheckPhoneTime',
+              label: '空号检测时间',
+            },
+          ],
+        },
+      ]
+    };
+  },
+  mounted() {
+    this.selfTreeData = JSON.parse(JSON.stringify(this.treeData));
+  },
+  methods: {
+    emitOperatorCommand(item, index) {
+      this.$emit('emitOperatorCommand', item, index);
+    },
+    emitDel(index, parentIndex) {
+      this.$emit('emitDel', index, parentIndex)
+    },
+    typeHandleChange(val, item, index, parentIndex) {
+      // this.$emit('emitTypeHandleChange', JSON.parse(JSON.stringify(this.selfTreeData)));
+    }
+  },
+  watch: {
+    treeData: {
+      handler: function (val) {
+        this.selfTreeData = JSON.parse(JSON.stringify(val));
+      },
+      deep: true,
+    }
+  }
+};
+</script>
+<style lang="less" scoped>
+.delete_btn {
+  cursor: pointer;
+}
+</style>
+
+```
+
+```js
+[
+    {
+        "$flag": 1,
+        "children": [
+            {
+                "$key": "guestSrcsIds"
+            },
+            {
+                "$key": "checkPhoneStatus"
+            }
+        ]
+    },
+    {
+        "$key": "createdTime"
+    },
+    {
+        "$flag": 1,
+        "children": [
+            {
+                "$key": "whereGet"
+            },
+            {
+                "$key": "numSinkId"
+            }
+        ]
+    }
+]
+```
+
+
+
+1234567
+
+checkoutApi.transferExchange
+
+​    min-height: calc(100% - 235px);
+
+```js
+    //收益科目
+    private Long revenueAccountId;
+    private String revenueAccountCode;
+    private String revenueAccountName;
+    //损失科目
+    private Long lossAccountId;
+    private String lossAccountCode;
+    private String lossAccountName;
+
+13327263
+// 线索 clueId=13327263
+http://localhost:1024/customer/SubmitOrder?clueId=13327263&billRunId=
+
+// 客户 ClientID=1
+http://localhost:1024/customer/submitOrder?clueId=13324280&vcCompanyName=%E5%8C%97%E4%BA%AC%E5%B0%9A%E6%99%AF%E5%AE%9E%E5%88%9B%E5%95%86%E8%B4%B8%E6%9C%89%E9%99%90%E5%85%AC%E5%8F%B8&phoneNumber=15666666661&conctName=%E6%B5%8B%E8%AF%95&source=customerManagement&ClientID=1
+
+备注意义说明提示（部分员工不清楚意义）
+提单界面显示客户1D及产品ID
+
+
+// 添加
+tooltip: true,
+
+
+
+
+
+
+
+<el-col v-if="orderDetailsList.order && orderDetailsList.order.commitOrderType == 1" :span="6" class="des">线索Id：{{ orderDetailsList.order && orderDetailsList.order.numClueId }}</el-col>
+          <el-col v-if="orderDetailsList.order && orderDetailsList.order.commitOrderType == 2" :span="6" class="des">客户Id：{{ orderDetailsList.order && orderDetailsList.order.numClientId }}</el-col>
+
+Merge branch 'xtl_waibi_jiezhuan' into xtl_newTest	a861051	xingtianlun <zhongxingtianlun@163.com>	2023年8月17日 16:42
+Merge branch 'xtl_waibi_kemuyue' into xtl_newTest	211bde7	xtl <zhongxingtianlun@163.com>	2023年8月16日 10:14
+
+
+calculationBtn() {
+      // 计算汇兑损益
+      let query = this.exchangeGainAndLossSetInfo;
+      let res = checkoutApi.transferExchangeCalculateTransferExchange(query);
+      if(res.code === 200) {
+        this.exchangeGainAndLossSetInfo = res.data;
+        this.tableData = res.data.transferExchangeDetailList;
+      }else {
+        this.$message({
+          message: `${res.message}`,
+          type: "error"
+        });
+      }
+    },
+      
+      
+      
+      digestObj.name = res.data.voucherDetailList[0].digest;
+            digestObj.id = res.data.voucherDetailList[0].digest;
+
+
+
+
+      
+      // 结转汇兑损益 计算损益
+  transferExchangeCalculateTransferExchange (params) {
+    let result = Post(`/transfer-exchange/calculate-transfer-exchange`,params)
+    return result
+  },
+
+// 结转汇兑损益设置
+  transferExchange (params) {
+    let result = Post(`/transfer-exchange/get`,params)
+    return result
+  },
+
+      year: "",
+      month: "",
+          this.year = year;
+          this.month = month;
+
+
+// 结转汇兑损益设置
+    exchangeGainAndLossSet() {
+      let query = {
+        year: this.year,
+        month: this.month,
+      }
+      checkoutApi.transferExchange(query).then(res => {
+        if(res.code === 200) {
+          
+          this.exchangeGainAndLossSetShow = true;
+        }else {
+          this.$message({
+            message: `${res.message}`,
+            type: "error"
+          });
+        }
+      })
+
+    },
 ```
 
 
@@ -8947,6 +9485,385 @@ this.multipleSelection.forEach(item => ids.push(item.code));
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+```js
+case "customer":
+
+          this.tabTitle = "客户";
+
+          break;
+
+        case "staff":
+
+          this.tabTitle = "员工";
+
+          break;
+
+        case "supplier":
+
+          this.tabTitle = "供应商";
+
+          break;
+
+        case "project":
+
+          this.tabTitle = "项目";
+
+          break;
+
+        case "department":
+
+          this.tabTitle = "部门";
+
+          break;
+
+        case "commodityType":
+
+          this.tabTitle = "存货及服务";
+
+          break;
+
+        case "voucherInput":
+
+          this.tabTitle = "凭证录入";
+
+          break;
+
+        *// case "voucherInputN":*
+
+        *//   this.tabTitle = "凭证录入N";*
+
+        *//   break;*
+
+        case "voucherInfo":
+
+          this.tabTitle = "凭证信息";
+
+          break;
+
+        case "voucherQuery":
+
+          this.tabTitle = "凭证查询";
+
+          break;
+
+        case "ledger":
+
+          this.tabTitle = "总账";
+
+          break;
+
+        case "detailAccount":
+
+          this.tabTitle = "明细账";
+
+          break;
+
+        case "chronological":
+
+          this.tabTitle = "序时账";
+
+          break;
+
+        case "detailAccountQuantity":
+
+          this.tabTitle = "数量核算明细账";
+
+          break;
+
+        case "detailAccountAuxiliary":
+
+          this.tabTitle = "辅助核算明细账";
+
+          break;
+
+        case "summaryOfSubjects":
+
+          this.tabTitle = "科目汇总表";
+
+          break;
+
+        case "subjectBalance":
+
+          this.tabTitle = "科目余额表";
+
+          break;
+
+        case "subjectBalanceQuantity":
+
+          this.tabTitle = "数量核算余额表";
+
+          break;
+
+        case "subjectBalanceAuxiliary":
+
+          this.tabTitle = "辅助核算余额表";
+
+          break;
+
+        case "profitForm":
+
+          this.tabTitle = "利润表";
+
+          break;
+
+        case "profitFormQuarterlyReport":
+
+          this.tabTitle = "利润表季报";
+
+          break;
+
+        case "cashFlowForm":
+
+          this.tabTitle = "现金流量表";
+
+          break;
+
+        case "cashFlowFormQuarterlyReport":
+
+          this.tabTitle = "现金流量表季报";
+
+          break;
+
+        case "balanceSheet":
+
+          this.tabTitle = "资产负债表";
+
+          break;
+
+        case "expenseStatistics":
+
+          this.tabTitle = "费用统计表";
+
+          break;
+
+        case "checkoutTest":
+
+          this.tabTitle = "结账";
+
+          break;
+
+          *// addedTax*
+
+        case "personalTax":
+
+          this.tabTitle = "企业所得税";
+
+          break;
+
+        case "addedTax":
+
+          this.tabTitle = "增值税及附加税";
+
+          break;
+
+        case "fixedProperty":
+
+          this.tabTitle = "固定资产";
+
+          break;
+
+        case "addFixedProperty":
+
+          this.tabTitle = "新增固定资产";
+
+          break;
+
+        case "fixedTypeSet":
+
+          this.tabTitle = "固定资产类别设置";
+
+          break;
+
+        case "invisibleTypeSet":
+
+          this.tabTitle = "无形资产类别设置";
+
+          break;
+
+        case "detailAmortOfDepre":
+
+          this.tabTitle = "折旧摊销明细";
+
+          break;
+
+        case "summaryAmortOfDepre":
+
+          this.tabTitle = "折旧摊销汇总";
+
+          break;
+
+        case "cleanProperty":
+
+          this.tabTitle = "资产清理处置";
+
+          break;
+
+        case "invisibleProperty":
+
+          this.tabTitle = "无形资产";
+
+          break;
+
+        case "editFixedProperty":
+
+          this.tabTitle = "固定资产卡片";
+
+          break;
+
+        case "addInvisibleProperty":
+
+          this.tabTitle = "新增无形资产";
+
+          break;
+
+        case "editInvisibleProperty":
+
+          this.tabTitle = "无形资产卡片";
+
+          break;
+
+        case "deferredAssets":
+
+          this.tabTitle = "长期待摊费用";
+
+          break;
+
+        case "addDeferredAssets":
+
+          this.tabTitle = "新增长期待摊费用";
+
+          break;
+
+        case "editDeferredAssets":
+
+          this.tabTitle = "长期待摊费用卡片";
+
+          break;
+
+        case "actionLog":
+
+          this.tabTitle = "操作日志";
+
+          sessionStorage.setItem("logType", "1");
+
+          break;
+
+        case "itemType":
+
+          this.tabTitle = "单据类型设置";
+
+          break;
+
+        case "incomeInvoice":
+
+          this.tabTitle = "进项发票";
+
+          break;
+
+        case "outputInvoice":
+
+          this.tabTitle = "销项发票";
+
+          break;
+
+        case "cost":
+
+          this.tabTitle = "费用";
+
+          break;
+
+        case "cash":
+
+          this.tabTitle = "现金";
+
+          break;
+
+        case "otherFund":
+
+          this.tabTitle = "其他货币资金";
+
+          break;
+
+        *// case 'commodityType':*
+
+        *//   this.tabTitle = '商品编码设置'*
+
+        *//   break*
+
+        case "bank":
+
+          this.tabTitle = "银行";
+
+          break;
+
+        case "certification":
+
+          this.tabTitle = "认证抵扣";
+
+          break;
+
+        case "invoiceBank":
+
+          this.tabTitle = "银行 ";
+
+          break;
+
+        case "bankSubjectMatching":
+
+          this.tabTitle = "银行科目匹配关系 ";
+
+          break;
+
+        case "finance":
+
+          this.tabTitle = "财税状况";
+
+          break;
+
+        default:
+
+          break;
+
+
+```
+
+
+
+
+
+
+
+debitTotalAmount
+
+creditTotalAmount
+
+beginning
+
+
+
+```js
+getRowKey(data) {
+      return `${data.accountId}${data.currencyName ? data.currencyName : ''}`
+    },
+      :row-key="getRowKey"
+
+
+
+
+```
 
 
 
