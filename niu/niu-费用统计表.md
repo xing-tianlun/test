@@ -10223,12 +10223,731 @@ export default {
 ```
 
 ```js
+import {treeselect} from '@/api/system/dept';
+
+
+    this.getTreeselect();
+/** 查询部门下拉树结构 */
+    getTreeselect() {
+      treeselect().then((response) => {
+        this.deptOptions = response.data;
+      });
+    },
+      
+            deptOptions: [],
+
+              
+              <el-form-item label="所属部门" prop="deptId">
+        <el-cascader
+          v-model="queryParams.deptId"
+          :options="deptOptions"
+          :props="propsAdd"
+          collapse-tags
+          clearable
+        />
+      </el-form-item>
+```
+
+
+
+```js
+凭证回收站	支持凭证回收处理
+辅助明细账	增加辅助明细账。
+```
+
+
+
+```js
+// 3. 商机池分配数据一页数量增加
+src/views/erp/beidou/business/index.vue
+:248
+      :pageSizes="[10, 20, 50, 100, 200, 500, 1000]"
+
+// 4. 分配人可搜索名字，输入数量
+src/views/components/business/batchDistribution.vue
+:10
+<el-input
+        v-if="latelyContactList.length"
+        placeholder="搜索"
+        v-model="filterText">
+      </el-input>
+:104
+      filterText: "",
+:110
+watch: {
+    filterText(val) {
+      this.$refs.tree.filter(val);
+    }
+  },
+```
+
+
+
+```js
+// 1. 分配人可搜索名字，输入数量 checked
+// 2. 增加是否未跟进（是、否）筛选（未跟进判断依据，无跟进记录、未拨打过电话） checked
+// 3. 
+getQueryString('shearPhone')
+// 辅助明细账	增加辅助明细账。
+// 客户管理	增加纳税等级
+// 首页	经营状况分析（增加一个时间区间及汇总数据）
+
+isPurchase: 0
+addPeriod: 201904
+manyConditions: 0
+invoiceType: 1001
+file: (binary)
+
+
+// src/views/erp/beidou/clue/highSeas/index.vue
+:131
+<el-form-item label="进入公海时间" prop="datNodeTime">
+        <el-date-picker
+          v-model="queryParams.datNodeTime"
+          type="datetimerange"
+          range-separator="至"
+          start-placeholder="开始日期"
+          end-placeholder="结束日期"
+          value-format="yyyy-MM-dd HH:mm:ss"
+          :default-time="['00:00:00', '23:59:59']"
+          >
+        </el-date-picker>
+      </el-form-item>
+      <el-form-item>
+```
+
+
+
+```js
+北京市朝阳区北辰东路8号汇宾大厦A座1901室
+北京市朝阳区北辰东路8号汇宾大厦A座1308室
+
+北京市朝阳区北辰东路8号3号楼3层303A室
+
+feat: 添加渠道推广看板
+// 新增菜单
+extendManage 推广管理
+channelPromotionBoard 渠道推广看板
+extendManage/channelPromotionBoard/channelPromotionBoard.vue
+// 按钮权限
+渠道推广看板导出
+channelPromotionBoard:export
+
+
+// 等后端给了字段再改
+// 商机池添加最近跟进时间
+// src/views/erp/beidou/business/index.vue
+:236
+      <el-table-column label="最近跟进时间" align="left" prop="lastConnectedTime" width="160" />
+
+        最近跟进时间
+voucherId
+```
+
+
+
+ ```js
+ // 订单管理模块 - 订单管理
+ src/views/erp/beidou/order/orderManager/index.vue
+ :29
+ <el-cascader v-model="queryParams.deptId" :options="deptOptions" :props="depProps" :show-all-levels="false"
+           placeholder="请选择" clearable filterable />
+ :389
+         multiple: true,
+ // 订单管理模块 - 地址续费客户
+ src/views/erp/Service/TaxControService.vue
+ :19-37
+ <el-form-item label="城市" prop="cityId">
+           <el-cascader v-model="queryParams.cityId" :options="cityOptions" :props="cityProps" placeholder="请选择" filterable clearable size="mini" />
+         </el-form-item>
+       <el-form-item label="签约部门" prop="sellerDeptId">
+         <el-cascader v-model="queryParams.sellerDeptId" :options="depList" :props="depClassifProps" placeholder="请选择" filterable clearable collapse-tags size="mini" />
+       </el-form-item>
+       <el-form-item label="签约人" prop="sellerId">
+         <el-select v-model="queryParams.sellerId" placeholder="请选择" filterable multiple clearable collapse-tags size="mini">
+           <el-option v-for="item in userList" :key="item.userId" :label="item.nickName" :value="item.userId" />
+         </el-select>
+       </el-form-item>
+       <el-form-item label="记账会计" prop="accountUserId">
+         <el-select v-model="queryParams.accountUserId" placeholder="请选择" filterable multiple clearable collapse-tags size="mini">
+           <el-option v-for="item in userList" :key="item.userId" :label="item.nickName" :value="item.userId" />
+         </el-select>
+       </el-form-item>
+       <el-form-item label="记账会计部门" prop="deptId">
+         <el-cascader v-model="queryParams.deptId" :options="depList" :props="depClassifProps" placeholder="请选择" filterable clearable collapse-tags size="mini" />
+       </el-form-item>
+ :574
+         multiple: true,
+ 
+           
+ vcNicheName
+ vcProfiles
+ numClueProtectDay
+ numKeepDay
+ numNextNicheFlowId
+ numDialPeriod
+ deptIds
+ productIds
+ ```
+
+
+
+```js
+clearable
+filterable
+multiple
+collapse-tags
+
+
+// logLevel: 'debug',
+        onProxyRes(proxyRes, req, res) {
+          const realUrl = new URL(req.url || "", process.env.VUE_APP_URL).href || ""
+          proxyRes.headers['x-real-url2'] = realUrl
+        },
+        pathRewrite: {
+          ['^' + process.env.VUE_APP_BASE_API]: process.env.VUE_APP_BASE_API
+        }
+```
+
+feat: 统一替换牛牛帮 为 后企	12e75ae	xingtianlun <zhongxingtianlun@163.com>	2023年10月26日 13:53
+
+
+
+VUE_APP_URL = http://172.16.1.166:83
+
+VUE_APP_URL = http://172.16.0.38:7070
+
+VUE_APP_URL = 'http://stage.niuniubang.com:30096'
+
+```js
+      let deptId = query.deptId ? query.deptId.join(',') : "";
+
+
+<el-form-item label="城市" prop="cityId">
+          <el-cascader v-model="queryParams.cityId" :options="cityOptions" :props="cityProps" placeholder="请选择" filterable clearable size="mini" />
+        </el-form-item>
+      <el-form-item label="签约部门" prop="sellerDeptId">
+        <el-cascader v-model="queryParams.sellerDeptId" :options="depList" :props="depClassifProps" placeholder="请选择" filterable clearable collapse-tags size="mini" />
+      </el-form-item>
+      <el-form-item label="签约人" prop="sellerId">
+        <el-select v-model="queryParams.sellerId" placeholder="请选择" filterable multiple clearable collapse-tags size="mini">
+          <el-option v-for="item in userList" :key="item.userId" :label="item.nickName" :value="item.userId" />
+        </el-select>
+      </el-form-item>
+      <el-form-item label="记账会计" prop="accountUserId">
+        <el-select v-model="queryParams.accountUserId" placeholder="请选择" filterable multiple clearable collapse-tags size="mini">
+          <el-option v-for="item in userList" :key="item.userId" :label="item.nickName" :value="item.userId" />
+        </el-select>
+      </el-form-item>
+      <el-form-item label="记账会计部门" prop="deptId">
+        <el-cascader v-model="queryParams.deptId" :options="depList" :props="depClassifProps" placeholder="请选择" filterable clearable collapse-tags size="mini" />
+      </el-form-item>
+
+sellerDeptId
+sellerId
+accountUserId
+deptId
+
+depClassifProps: {
+        multiple: true,
+        emitPath: false,
+        value: 'id',
+        label: 'label',
+        children: 'children'
+      },
 
 ```
 
 
 
 ```js
+// 分支 xtl_dev2
+
+<el-table-column label="当期成交量-报名" align="left" prop="turnOverNowOne" width="150"></el-table-column>
+        <el-table-column label="当期成交额-报名" align="left" prop="turnoverAmountNowOne" width="150"></el-table-column>
+        <el-table-column label="当期ROI-报名" align="left" prop="roinowOne" width="150"></el-table-column>
+        <el-table-column label="累计成交量-报名" align="left" prop="accumulativeTurnOverOne" width="150"></el-table-column>
+        <el-table-column label="累计成交额-报名" align="left" prop="accumulativeTurnOverAmountOne" width="150"></el-table-column>
+        <el-table-column label="累计ROI-报名" align="left" prop="roione" width="150"></el-table-column>
+        <el-table-column label="当期成交量-订单" align="left" prop="turnOverNowTwo" width="150"></el-table-column>
+        <el-table-column label="当期成交额-订单" align="left" prop="turnoverAmountNowTwo" width="150"></el-table-column>
+        <el-table-column label="累计成交量-订单" align="left" prop="accumulativeTurnOverTwo" width="150"></el-table-column>
+        <el-table-column label="累计成交额-订单" align="left" prop="accumulativeTurnOverAmountTwo" width="150"></el-table-column>
+        <el-table-column label="当期ROI-订单" align="left" prop="roinowTwo" width="150"></el-table-column>
+        <el-table-column label="累计ROI-订单" align="left" prop="roitwo" width="150"></el-table-column>
+        <el-table-column label="当期成交量-财务" align="left" prop="turnOverNowFinance" width="150"></el-table-column>
+        <el-table-column label="当期成交额-财务" align="left" prop="turnoverAmountNowFinance" width="150"></el-table-column>
+        <el-table-column label="当期ROI-财务" align="left" prop="ROINowFinance" width="150"></el-table-column>
+        <el-table-column label="累计成交量-财务" align="left" prop="accumulativeTurnOverFinance" width="150"></el-table-column>
+        <el-table-column label="累计成交额-财务" align="left" prop="accumulativeTurnOverAmountFinance" width="150"></el-table-column>
+        <el-table-column label="累计ROI-财务" align="left" prop="ROIAccumulativeFinance" width="150"></el-table-column>
+```
+
+```js
+<template slot-scope="scope">
+              <span :style="{'color':  scope.row.income >= 5000000 ? '#f00': '#000'}">
+                {{ formatMoney(scope.row, scope.column, scope.row.income ) }}
+              </span>
+            </template>
+
+formatMoney(data, row, value) {
+      // todo 把这个代码抽出去，我这里只是把实现挪到这儿
+      return AmountUtil.formatMoney(data, row, value);
+    },
+      
+      import AmountUtil from '@/utils/AmountUtil'
 
 ```
+
+
+
+```js
+<template>
+  <div>
+    <!-- 用户导入对话框 -->
+    <el-dialog
+      title="批量导入"
+      width="400px"
+      :visible.sync="open"
+      :modal="false"
+      :before-close="handleDialogClose"
+    >
+      <el-upload
+        ref="upload"
+        :limit="1"
+        accept=".xlsx, .xls"
+        :headers="upload.headers"
+        :action="upload.url + '?updateSupport=' + upload.updateSupport"
+        :disabled="upload.isUploading"
+        :on-progress="handleFileUploadProgress"
+        :on-success="handleFileSuccess"
+        :auto-upload="false"
+        drag
+      >
+        <i class="el-icon-upload" />
+        <div class="el-upload__text">将文件拖到此处，或<em>点击上传</em></div>
+        <div slot="tip" class="el-upload__tip text-center">
+          <!-- <div class="el-upload__tip" slot="tip">
+            <el-checkbox v-model="upload.updateSupport" />
+            是否更新已经存在的用户数据
+          </div> -->
+          <span>仅允许导入xls、xlsx格式文件。</span>
+          <el-link
+            type="primary"
+            :underline="false"
+            style="font-size: 12px; vertical-align: baseline"
+            @click="importTemplate"
+          >下载模板</el-link>
+        </div>
+      </el-upload>
+      <div slot="footer" class="dialog-footer">
+        <el-button type="primary" @click="submitFileForm">确 定</el-button>
+        <el-button @click="closeFileForm">取 消</el-button>
+      </div>
+    </el-dialog>
+  </div>
+</template>
+
+<script>
+import {
+  listConfig,
+  getConfig,
+  delConfig,
+  addConfig,
+  updateConfig,
+} from '@/api/erp/config';
+import {getToken} from '@/utils/auth';
+
+export default {
+  name: 'ImportFile',
+  data() {
+    return {
+      // 用户导入参数
+      upload: {
+        // 是否显示弹出层（用户导入）
+        open: true,
+        // 是否禁用上传
+        isUploading: false,
+        // 是否更新已经存在的用户数据
+        updateSupport: 0,
+        // 设置上传的请求头部
+        headers: {Authorization: 'Bearer ' + getToken()},
+        // 上传的地址
+        url: process.env.VUE_APP_BASE_API + '/erp/config/importData',
+      },
+      open: true,
+    };
+  },
+  created() {},
+  methods: {
+    /** 导入按钮操作 */
+    handleImport() {
+      this.upload.title = '用户导入';
+      this.upload.open = true;
+    },
+    /** 下载模板操作 */
+    importTemplate() {
+      this.download(
+        '/erp/config/importTemplate',
+        {},
+        `contractsLevy_${new Date().getTime()}.xlsx`
+      );
+    },
+    // 文件上传中处理
+    handleFileUploadProgress(event, file, fileList) {
+      this.upload.isUploading = true;
+    },
+    // 文件上传成功处理
+    handleFileSuccess(response, file, fileList) {
+      this.upload.open = false;
+      this.upload.isUploading = false;
+      // this.$refs.upload.clearFiles();
+      response.data = [
+        {
+          orderNumber: "123",
+          signUser: "234",
+          naturalPerson: "345",
+          companyName: "asd",
+          price: "10",
+          ratio: "10%",
+          settlementTax: "",
+          channel: "456",
+          acceptDate: "2023-10-10"
+        },
+        {
+          orderNumber: "123",
+          signUser: "234",
+          naturalPerson: "345",
+          companyName: "asd",
+          price: "100.2",
+          ratio: "20%",
+          settlementTax: "",
+          channel: "456",
+          acceptDate: "2023-10-12"
+        }
+      ]
+      this.$emit('getData', response.data);
+      this.$alert(response.msg, '导入结果', {dangerouslyUseHTMLString: true});
+    },
+    // 提交上传文件
+    submitFileForm() {
+      this.$refs.upload.submit();
+      // setTimeout(() => {
+      //   this.$emit('close-modal', 's');
+      // }, 1000);
+    },
+    closeFileForm() {
+      this.$emit('close-modal');
+    },
+    handleDialogClose() {
+      this.$emit('close-modal');
+    },
+  },
+};
+</script>
+
+```
+
+
+
+```js
+// pdf 预览和下载
+a() {
+      let url = 'http://crm-file-com.oss-cn-beijing.aliyuncs.com/file/upload/course/20231101/%E6%B5%8B%E8%AF%95PDF-1698825667549.pdf'
+      this.downloadFile(url, 'aa');
+    },
+    b() {
+      let url = 'http://crm-file-com.oss-cn-beijing.aliyuncs.com/file/upload/course/20231101/%E6%B5%8B%E8%AF%95PDF-1698825667549.pdf'
+      window.open(url, "_blank");
+    },
+    downloadFile(href, fileName) {
+      // 获取heads中的filename文件名
+      let a = document.createElement("a");
+      a.style.display = "none";
+      // 给a标签创建下载的链接
+      a.href = href;
+      // 下载后文件名
+      a.download = fileName;
+      // 把a标签作为子节点插入当前body下
+      document.body.appendChild(a);
+      // 点击a标签下载
+      a.click();
+      // 下载完成移除元素
+      document.body.removeChild(a);
+    },
+```
+
+
+
+
+
+```js
+// xtl_dev2
+// stash@{0}: On xtl_dev: 审核添加批量导入
+import toPreviewInvoiceDialog from './toPreviewInvoiceDialog/index.vue';
+
+
+// 1. 灵活用工，委托代征，申请详情页支持表格导入数据， 已提测 👌
+// 2. 上海注销代理合同修改地址为：上海市嘉定区云谷路499号T3办公楼1105室 👌 xtl_dev
+src/components/electronicContract/zhuxiao/index.vue
+:61
+                联  系  地  址：上海市嘉定区云谷路499号T3办公楼1105室</p>
+
+// 3. 修改北斗模块部门/人员筛选 不一定写
+// 4. 快速拨号同一个主体下，若线索在别人手机号，不允许拨打，则toast提示，该线索在别人客保，不允许拨打 👌 xtl_dev
+src/views/components/call/speedDial.vue
+:174
+在 phoneStatus 和 this.$api.beidou.getClueId 之前添加一个检测接口，判断是否符合条件
+/PopularizeClue/checkIsOtherKb/{phone}   GET  校验手机号是否有在别人客保的线索  true为存在
+
+// 5. 商机池配配置筛选项新启：1 、 是否加入过商机池 👌 xtl_dev
+// 6. 上传附件完成后自动关闭对话框 👌
+// 7. 在代账进展 里增加   （近12月的累计收入字段） 👌
+
+
+
+// 8. 文件的归档处理（待定）（进行中）
+// 9. 进销项发票生成凭证时，同时将进项记录加到凭证附件（待定、确定方案中...） 已提测
+
+// 10. @ApiModelProperty("公海领取标记 传 1") 
+// 等鹏礼加好再弄
+   //  private Integer isCommonDistribute;
+src/views/erp/beidou/clue/highSeas/index.vue
+:1171
+            batchUpdateBdClue({actType: 12, bdClueIdList: this.ids, isCommonDistribute: 1}).then(
+
+
+              
+voucherAttachmentList
+
+
+invoiceId
+isPurchase
+
+invoiceShow: false,
+
+```
+
+```js
+// 1. 代账-文件的归档处理 👌
+// 2. 代账-导入成功后，直接显示导入成功的信息记录； 👌
+
+// 1. crm-商机池批量分配请求添加搜索参数 xtl_dev 👌
+// 2. crm-审批管理，待我审批加导出，打款列表加导入导出 xtl_dev2 👌
+// 3. crm-修改上海企苗-工商变更合同 xtl_hetong5 👌
+// 4. 订单管理模块，部门、人员筛选改为多选 xtl_dev 👌
+
+
+```
+
+
+
+
+
+```js
+// 11.13-11.17
+// 上海起名-活动页 👌
+// 渠道推广看板增加渠道筛选，支持多选  xtl_temp 👌
+// 推广渠道看板增加汇总列  xtl_temp 👌
+// 渠道推广看板账户筛选，支持多选  xtl_temp 👌
+// 打款列表的申请类型字段改成多选筛选  xtl_dev2 👌
+
+// 后企小程序-加首页 产品列表 活动列表更换背景 👌
+// 上海靓名-靓名活动按分享人分配 👌
+
+//进项发票-实现存货辅助核算自动生成凭证； 👌
+//存货档案增加分类管理-存货档案增加分类管理  已提测
+```
+
+
+
+
+
+```js
+<el-table-column
+                    min-width="26%"
+                    label="名称">
+                    <template slot="header" slot-scope="scope">
+                      <span>名称</span>
+                      <span @click="btn(scope)" style="display: inline-block; padding: 0px 10px; line-height: 20px; background: #000; color: #fff;border-radius: 30px;cursor: pointer;">11</span>
+                    </template>
+                    <template slot-scope="scope">
+                      <span :title="scope.row.assist.name" class="ellipsis nameHover" @click="editClickBtn(scope.row)">
+                        {{scope.row.assist.name}}
+                      </span>
+                    </template>
+                  </el-table-column>
+```
+
+
+
+```js
+enterOfBooks
+```
+
+
+
+```js
+// 存货辅助核算生成凭证时的单位取存货的单位；
+// 存货批量修改时，只修改已选择项，无选择项保持原状态
+
+
+// 新建弹窗经营范围字数改成不限制 已合到prod 👌
+// 执照管理+执照资源池 ，行业类型改成多选（一级二级都可以选择）👌
+src/views/License/Search.vue
+:34
+              :props="{value:'id',label:'name',multiple: true,emitPath: false,}"
+:38
+              collapse-tags // 新增
+
+src/views/licenseMananger/manage/components/index.vue
+:59
+          :props="{value:'id',label:'name',multiple: true,emitPath: false,}"
+:63
+          collapse-tags // 新增
+
+```
+
+```js
+<el-dialog
+      width="520px"
+      title="批量编辑结算"
+      :visible.sync="batchEditSettlementDialogVisible"
+    >
+    <div style="text-align: center;">
+      结算科目
+      <transition name="el-fade-in-linear select-width-300">
+        <el-select
+          style="width: 420px;"
+          class="subjectElSelect"
+          ref="subjectselect"
+          v-model="batchEditSettlementCode"
+          filterable
+          placeholder="请选择"
+          popper-class="subjectSelect"
+        >
+          <el-option
+            v-for="item in selfSubjectOptions"
+            :key="item.id"
+            :title="item.code + ' ' + item.fullName"
+            :label="item.code + ' ' + item.fullName"
+            :value="item.id"
+          >
+            <span
+              class="digest-option"
+              >{{ item.code + " " + item.fullName }}</span
+            >
+          </el-option>
+          <div class="add-cost-type" @click="addNewSubject()">
+            <i class="el-icon-circle-plus-outline"></i> 新增科目
+          </div>
+        </el-select>
+      </transition>
+      <div slot="footer" class="dialog-footer" style="display: flex;justify-content: center; margin-top: 20px;">
+        <el-button class="btn__default" @click="batchEditSettlementDialogCancel">取 消</el-button>
+        <el-button class="btn-main btn-wide-padding btn__add" type="primary" @click="batchEditSettlementDialogSuccess">确 定</el-button>
+      </div>
+    </div>
+  </el-dialog>
+```
+
+```js
+"workbench.colorCustomizations": {
+        "tab.activeBackground": "#f4d25a",
+    },
+```
+
+
+
+```js
+// 2023.11.27-2023.12.1
+// 代账-修改银行导入
+
+```
+
+
+
+```js
+:is-purchase="true"
+isPurchase: {
+      type: Boolean, // true: 进项； false: 销项
+      default: false
+    },
+```
+
+```js
+import commonAxios from '@/api/common/commonAxios'
+ getPeriod () {
+      // 查询当前账套期间
+      commonAxios.QueryAccountPeriod().then(res => {
+        if (res.code === 200) {
+          this.defaultAccountPeriod = res.data
+          this.searchParams.start = res.data.currentPeriod
+          this.searchParams.end = res.data.currentPeriod
+          this.queryFixedPropertyList()
+        }
+      })
+    },
+```
+
+
+
+
+
+```js
+purchaseSaleStock 进销存
+	stockOpen.vue 存货启用
+	purchaseSaleStockAccounting 进销存核算
+		inventoryParameter.vue 存货参数
+		openingBalance.vue 期初余额
+		putInStorageDetail.vue 入库明细表
+    deliveryFromStorageDetail.vue 出库明细表
+    receiveAndStoreDetail.vue 收发存明细表
+    receiveAndStoreSaveSummary.vue 收发存存汇总表
+ 
+```
+
+
+
+
+
+## Mac 删除启动台的程序
+
+sqlite3 $(find /private/var/folders \( -name com.apple.dock.launchpad -a -user $USER \) 2> /dev/null)/db/db "DELETE FROM apps WHERE title='app名字';" && killall Dock
+
+## git plugin
+
+
+
+| Alias    | Command                                           |
+| -------- | ------------------------------------------------- |
+| `ga`     | `git add`                                         |
+| `gaa`    | `git add --all`                                   |
+| `gcmsg`  | `git commit --message`                            |
+| `gp`     | `git push`                                        |
+| `ggp`    | `git push origin $(current_branch)`               |
+| `ggf`    | `git push --force origin $(current_branch)`  强推 |
+| `gl`     | `git pull`                                        |
+| `ggl`    | `git pull origin $(current_branch)`               |
+| `ggpull` | `git pull origin "$(git_current_branch)"`         |
+| `gf`     | `git fetch`                                       |
+| `gm`     | `git merge`                                       |
+| `gmom`   | `git merge origin/$(git_main_branch)`             |
+| `gst`    | `git status`                                      |
+| `gb`     | `git branch`                                      |
+| `gstall` | `git stash --all`                                 |
+| `gstl`   | `git stash list`                                  |
+| `gstp`   | `git stash pop`                                   |
+| `gco`    | `git checkout`                                    |
+| `gcb`    | `git checkout -b`                                 |
+| `glgg`   | `git log --graph`                                 |
+|          |                                                   |
+|          |                                                   |
+|          |                                                   |
+|          |                                                   |
+|          |                                                   |
+|          |                                                   |
+|          |                                                   |
+|          |                                                   |
+|          |                                                   |
 
